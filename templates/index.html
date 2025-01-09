@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generare Traseu GPS</title>
-    <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="/static/styles.css">
 
@@ -35,29 +34,29 @@
 
     <script>
         $(document).ready(function () {
-            console.log("Documentul este gata!"); // Debug 1
+            console.log("Documentul este gata!");
 
             $('#route-form').on('submit', function (e) {
                 e.preventDefault(); // Previne trimiterea clasică a formularului
-                console.log("Formularul a fost trimis."); // Debug 2
+                console.log("Formularul a fost trimis.");
 
                 const formData = $(this).serialize(); // Preia datele din formular
-                console.log("Datele trimise:", formData); // Debug 3
+                console.log("Datele trimise:", formData); 
 
                 // Trimite cererea POST către server
                 $.post('/generate-route', formData, function (response) {
-                    console.log("Răspuns primit de la server:", response); // Debug 4
+                    console.log("Răspuns primit de la server:", response); 
                     if (response.status === 'success') {
-                        console.log("Harta a fost generată. Deschidem link-ul:", response.map_url); // Debug 5
-                        window.open(response.map_url, '_blank'); // Deschide harta într-un tab nou
+                        console.log("Harta a fost generată. Deschidem link-ul:", response.map_url); 
+                        window.open(response.map_url, '_blank'); 
                         $('#route-form')[0].reset();
-                        console.log("Formularul a fost resetat."); // Debug 6
+                        console.log("Formularul a fost resetat."); 
                     } else {
-                        console.error("Eroare de la server:", response.message); // Debug 6
+                        console.error("Eroare de la server:", response.message); 
                         alert(response.message); // Afișează eroarea în alert
                     }
                 }).fail(function (jqXHR, textStatus, errorThrown) {
-                    console.error("Eroare la trimiterea cererii AJAX:", textStatus, errorThrown); // Debug 7
+                    console.error("Eroare la trimiterea cererii AJAX:", textStatus, errorThrown); 
                     $('#error-message').text("A apărut o eroare la comunicarea cu serverul.").show();
                 });
             });

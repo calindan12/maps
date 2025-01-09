@@ -21,7 +21,7 @@ def generate_route():
     user_id = request.form['user']
     start_time = request.form['start_time']
     end_time = request.form['end_time']
-    date_filter = request.form['date']  # Exemplu: "2008-02-02"
+    date_filter = request.form['date']
 
     # Filtrăm datele din MongoDB
     query = {
